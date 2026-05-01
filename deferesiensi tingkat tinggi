@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// fungsi yang akan diturunkan
+double f(double x)
+{
+    return pow(x, 3) + 2 * pow(x, 2) - x + 1;
+}
+
+// fungsi rekursif untuk turunan tingkat tinggi
+double turunan(double x, double h, int n)
+{
+    if (n == 1)
+    {
+        // turunan pertama (selisih tengah)
+        return (f(x + h) - f(x - h)) / (2 * h);
+    }
+    else
+    {
+        // turunan tingkat n dari turunan sebelumnya
+        return (turunan(x + h, h, n - 1) - turunan(x - h, h, n - 1)) / (2 * h);
+    }
+}
+
+int main()
+{
+    cout << "=== DIFERENSIASI TINGKAT TINGGI (NUMERIK) ===" << endl;
+
+    double x, h;
+    int n;
+
+    cout << "Masukkan nilai x: ";
+    cin >> x;
+
+    cout << "Masukkan nilai h (kecil, misal 0.001): ";
+    cin >> h;
+
+    cout << "Masukkan orde turunan (n): ";
+    cin >> n;
+
+    double hasil = turunan(x, h, n);
+
+    cout << "\nTurunan ke-" << n << " di x = " << x << " ≈ " << hasil << endl;
+
+    return 0;
+}
