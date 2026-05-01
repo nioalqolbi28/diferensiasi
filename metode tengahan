@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// fungsi yang akan diturunkan
+double f(double x)
+{
+    return pow(x, 3) + 2 * pow(x, 2) - x + 1;
+}
+
+int main()
+{
+    cout << "=== DIFERENSIASI NUMERIK (SELISIH TENGAH) ===" << endl;
+
+    double x, h;
+
+    cout << "Masukkan nilai x: ";
+    cin >> x;
+
+    cout << "Masukkan nilai h (kecil, misal 0.001): ";
+    cin >> h;
+
+    // rumus selisih tengah
+    double hasil = (f(x + h) - f(x - h)) / (2 * h);
+
+    cout << "\nHasil turunan di x = " << x << " ≈ " << hasil << endl;
+
+    return 0;
+}
